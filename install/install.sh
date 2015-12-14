@@ -22,7 +22,7 @@ panic() {
 # make symlinks
 files=$(find $ROOT -type f -name '*.symlink')
 for f in $files; do
-    src="$(realpath --relative-to=$HOME $f)"
+    src="${f#$HOME/}"
     dst="$(basename $f)"
     dst="$HOME/.${dst%.symlink}"
     name="$(basename $dst)"
