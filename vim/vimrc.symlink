@@ -12,6 +12,7 @@ Plugin 'majutsushi/tagbar'
 if v:version >= 704
     Plugin 'Valloric/YouCompleteMe'
 endif
+Plugin 'elzr/vim-json'
 call vundle#end()
 
 " Enable filetype specific plygins and indention
@@ -71,3 +72,8 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+" Local .vimrc
+if filereadable(glob('~/.vimrc.local'))
+    source ~/.vimrc.local
+endif
