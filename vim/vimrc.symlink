@@ -1,0 +1,73 @@
+" Initialize Vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" Vundle managed plugins
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'nvie/vim-togglemouse'
+Plugin 'fatih/vim-go'
+Plugin 'majutsushi/tagbar'
+if v:version >= 704
+    Plugin 'Valloric/YouCompleteMe'
+endif
+call vundle#end()
+
+" Enable filetype specific plygins and indention
+filetype plugin indent on
+
+" Display line numbers
+set number
+map <F3> :set number!<CR>
+
+" Map paste toggle
+set pastetoggle=<F2>
+
+" Syntax highlight
+syntax on
+
+" Autoindent
+set ai
+
+" Tab width
+set tabstop=4
+set shiftwidth=4
+
+" Enable 256 color mode
+set t_Co=256
+colorscheme molokai
+
+" *** NERDTree ***
+map <F9> :NERDTreeToggle<CR>
+
+" *** Tagbar ***
+nmap <F8> :TagbarToggle<CR>
+" Golang support for tagbar
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }

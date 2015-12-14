@@ -1,0 +1,13 @@
+# 
+# Z Shell startup
+#
+
+# run scripts
+for f in $(find $(dirname $0:A) -type f -name '*.zsh'); do
+    . $f
+done
+
+# Local overrides
+if [ -f ~/.zsh_local ]; then
+    . ~/.zsh_local
+fi
