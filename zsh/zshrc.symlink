@@ -2,8 +2,22 @@
 # Z Shell startup
 #
 
+# `$(dirname ${${(%):-%N}:A})´ expands to directory of this script.
+# Breakdown given below.
+# 
+# ${(%):-%N} expands to current script path.
+# Ref: http://zsh.sourceforge.net/Doc/Release/Expansion.html#index-parameter-expansion-flags
+#      http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Shell-state
+# 
+# ${var:A} interprets variable as a path and resolves symbolic links
+# Ref: http://zsh.sourceforge.net/Doc/Release/Expansion.html#Modifiers
+ZSH_DIR="$(dirname ${${(%):-%N}:A})"
+
+# .dotfiles root directory
+DOTFILES="$(dirname $ZSH_DIR)"
+
 # run scripts
-for f in $(find $HOME/.dotfiles/zsh -type f -name '*.zsh'); do
+for f in $(find $ZSH_DIR -type f -name '*.zsh'); do
     . $f
 done
 
