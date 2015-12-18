@@ -30,14 +30,14 @@ function set_prompt() {
 
     # if previous commanda returned non-zero
     if [ $retval -ne 0 ]; then
-    PS1+="\[\e[1;31m\]\342\234\227 \[\e[0;31m\]$retval \[\e[0m\]"
+        PS1+="\[\e[1;31m\]\342\234\227 \[\e[0;31m\]$retval \[\e[0m\]"
     fi
 
     # root session
     if [ $EUID -eq 0 ]; then
-    PS1+='\[\e[1;31m\]\u\[\e[1;30m\]@\[\e[0;31m\]\h'
+        PS1+='\[\e[1;31m\]\u\[\e[1;30m\]@\[\e[0;31m\]\h'
     else
-    PS1+='\[\e[1;36m\]\u\[\e[1;30m\]@\[\e[0;36m\]\h'
+        PS1+='\[\e[1;36m\]\u\[\e[1;30m\]@\[\e[0;36m\]\h'
     fi
 
     PS1+='\[\e[1;30m\]:\[\e[1;34m\]\w\[\e[1;30m\]\$\[\e[0m\] '
@@ -46,7 +46,8 @@ PROMPT_COMMAND='set_prompt'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r ~/.dircolors &&
+        eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
