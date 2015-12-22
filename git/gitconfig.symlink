@@ -1,6 +1,3 @@
-[user]
-	name = Joni Eskelinen
-	email = joni@mobie.fi
 [alias]
 	lg1 = log --graph --abbrev-commit --decorate --date=relative --all \
 		--format=format:'\
@@ -15,3 +12,5 @@
 	lg = !"git lg1"
 [color]
 	ui = auto
+[include]
+	path = .gitconfig.local
