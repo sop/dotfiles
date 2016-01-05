@@ -14,3 +14,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# execute last typed command with sudo
+alias please='sudo $(fc -ln -1)'
+
