@@ -16,5 +16,5 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # execute last typed command with sudo
-alias please='sudo $(fc -ln -1)'
+alias please='sudo zsh -c "$(fc -ln -1)"'
 
