@@ -39,6 +39,9 @@ set shiftwidth=4
 set t_Co=256
 colorscheme molokai
 
+" Write file by first invoking sudo
+cnoremap w!! w !sudo tee > /dev/null %
+
 " *** NERDTree ***
 map <F9> :NERDTreeToggle<CR>
 
