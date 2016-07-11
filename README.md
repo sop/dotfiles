@@ -8,4 +8,4 @@ Clone to home directory:
 
 Run install script:
 
-    ~/.dotfiles/install.sh
+    ~/.dotfiles/install/install.sh
