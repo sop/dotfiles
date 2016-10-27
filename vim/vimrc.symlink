@@ -9,7 +9,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'nvie/vim-togglemouse'
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
-if v:version >= 704
+if v:version > 704 || v:version == 704 && has("patch143")
     Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'elzr/vim-json'
