@@ -6,6 +6,6 @@ Clone to home directory:
 
     git clone https://github.com/sop/dotfiles.git ~/.dotfiles
 
-Run install script:
+Install:
 
-    ~/.dotfiles/install/install.sh
+    ( cd ~/.dotfiles && git submodule init && git submodule update && ./install/install.sh )
