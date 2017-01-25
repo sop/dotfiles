@@ -20,7 +20,7 @@ panic() {
 }
 
 # make symlinks
-files=$(find $ROOT -type f -name '*.symlink')
+files=$(find $ROOT \( -type f -o -type l \) -name '*.symlink')
 for f in $files; do
     src="${f#$HOME/}"
     dst="$(basename $f)"
