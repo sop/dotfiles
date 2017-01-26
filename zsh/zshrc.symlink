@@ -17,7 +17,7 @@ ZSH_DIR="$(dirname ${${(%):-%N}:A})"
 DOTFILES="$(dirname $ZSH_DIR)"
 
 # run scripts
-for f in $(find $ZSH_DIR -type f -name '*.zsh'); do
+for f in $(find $ZSH_DIR -type f -name '*.zsh' | sort); do
     . $f
 done
 
