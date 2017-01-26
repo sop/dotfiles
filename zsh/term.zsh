@@ -6,6 +6,7 @@
 tabs 4 && echo -ne "\033[1A"
 
 # initialize LS_COLORS
-if [[ -f "$DOTFILES/vendor/LS_COLORS/LS_COLORS" ]]; then
+if [[ -x /usr/bin/dircolors ]] && 
+        [[ -f "$DOTFILES/vendor/LS_COLORS/LS_COLORS" ]]; then
     eval $( dircolors -b "$DOTFILES/vendor/LS_COLORS/LS_COLORS" )
 fi
