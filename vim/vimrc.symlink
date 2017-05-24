@@ -40,6 +40,20 @@ set shiftwidth=4
 set t_Co=256
 colorscheme molokai
 
+" Highlight character that span over 80th column
+highlight OverLength ctermbg=88 ctermfg=7
+let s:OverLengthHighlightState = 0
+function! ToggleOverLengthHighlight()
+    if s:OverLengthHighlightState == 0
+        let s:OverLengthHighlightState = 1
+        match OverLength /\%81v.\+/
+    else
+        let s:OverLengthHighlightState = 0
+        match none
+    endif
+endfunction
+nnoremap <C-h> :call ToggleOverLengthHighlight()<CR>
+
 " Write file by first invoking sudo
 cnoremap w!! w !sudo tee > /dev/null %
 
