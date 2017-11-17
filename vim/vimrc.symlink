@@ -29,8 +29,11 @@ syntax on
 set ai
 
 " Tab width
-set tabstop=4
+set tabstop=8
+set softtabstop=0
 set shiftwidth=4
+set expandtab
+set smarttab
 
 " Enable 256 color mode
 set t_Co=256
