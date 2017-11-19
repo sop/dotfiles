@@ -1,0 +1,5 @@
+# if terminal is attached and zsh exists
+if [[ -t 1 ]] && [[ -x /usr/bin/zsh ]]; then
+    exec zsh
+fi
+
