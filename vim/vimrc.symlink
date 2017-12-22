@@ -35,6 +35,9 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
+" listchars
+set listchars=eol:¶,tab:>·,trail:·
+
 " Enable 256 color mode
 set t_Co=256
 colorscheme molokai
