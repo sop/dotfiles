@@ -7,7 +7,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'nvie/vim-togglemouse'
-Plugin 'fatih/vim-go'
+if has('patch-7.4-1689')
+    Plugin 'fatih/vim-go'
+endif
 Plugin 'majutsushi/tagbar'
 Plugin 'elzr/vim-json'
 call vundle#end()
