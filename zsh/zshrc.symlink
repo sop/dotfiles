@@ -21,7 +21,10 @@ while IFS= read -d $'\0' -r file; do
     . "$file"
 done < <(find "$ZSH_DIR" -type f -name '*.zsh' -print0 | sort -z)
 
-# Local overrides
+# local overrides
 if [ -f ~/.zsh_local ]; then
     . ~/.zsh_local
 fi
+
+# shared script for interactive sessions
+. "$DOTFILES/shell/interactive.sh"
