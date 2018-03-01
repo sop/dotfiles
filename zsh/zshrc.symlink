@@ -11,15 +11,15 @@
 # 
 # ${var:A} interprets variable as a path and resolves symbolic links
 # Ref: http://zsh.sourceforge.net/Doc/Release/Expansion.html#Modifiers
-ZSH_DIR="$(dirname ${${(%):-%N}:A})"
+ZSH_DIR="$(dirname "${${(%):-%N}:A}")"
 
 # .dotfiles root directory
-DOTFILES="$(dirname $ZSH_DIR)"
+DOTFILES="$(dirname "$ZSH_DIR")"
 
 # run scripts
-for f in $(find $ZSH_DIR -type f -name '*.zsh' | sort); do
-    . $f
-done
+while IFS= read -d $'\0' -r file; do
+    . "$file"
+done < <(find "$ZSH_DIR" -type f -name '*.zsh' -print0 | sort -z)
 
 # Local overrides
 if [ -f ~/.zsh_local ]; then
