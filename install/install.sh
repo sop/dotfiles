@@ -1,18 +1,18 @@
 #!/bin/bash
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="$(dirname $DIR)"
+# this script's directory
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# .dotfiles directory
+dotfiles_dir="$(dirname "$script_dir")"
 
 # print success
 success() {
     printf "\e[0;32mOK\e[0m $1\n"
 }
-
 # print warning
 warn() {
     printf "\e[0;33mWARNING\e[0m $1\n"
 }
-
 # print error and exit
 panic() {
     printf "\e[0;31mERROR\e[0m $1\n"
@@ -20,17 +20,18 @@ panic() {
 }
 
 # make symlinks
-files=$(find $ROOT \( -type f -o -type l \) -name '*.symlink')
-for f in $files; do
-    src="${f#$HOME/}"
-    dst="$(basename $f)"
+while IFS= read -d $'\0' -r file; do
+    # link target
+    src="${file#$HOME/}"
+    # link name
+    dst="$(basename "$file")"
     dst="$HOME/.${dst%.symlink}"
-    name="$(basename $dst)"
+    name="$(basename "$dst")"
     # if file already exists
     if [[ -e "$dst" ]]; then
         # if file is symbolic link
         if [[ -h "$dst" ]]; then
-            target="$(readlink $dst)"
+            target="$(readlink "$dst")"
             # if link already points to correct file
             if [[ "$target" == "$src" ]]; then
                 success "$name already linked"
@@ -43,19 +44,15 @@ for f in $files; do
         fi
         continue
     fi
-    ln -s $src $dst
+    ln -s "$src" "$dst"
     success "Linked $name"
-done
+done < <(find "$dotfiles_dir" \( -type f -o -type l \) -name '*.symlink' -print0)
 
 # run install scripts
-scripts=$(find $ROOT \( -type d -name $(basename $DIR) \) -prune -o \
-    -type f -name 'install.sh' -executable -print)
-for s in $scripts; do
-    export DOTFILES=$ROOT
-    $s
+while IFS= read -d $'\0' -r file; do
+    DOTFILES="$dotfiles_dir" "$file"
     if [[ $? -ne 0 ]]; then
-        warn "Failed to execute $(basename $(dirname $s)) install script"
+        warn "Failed to execute $(basename $(dirname "$s")) install script"
     fi
-done
-
-exit 0
+done < <(find "$dotfiles_dir" \( -type d -name $(basename "$script_dir") \) -prune -o \
+    -type f -name 'install.sh' -executable -print0)
