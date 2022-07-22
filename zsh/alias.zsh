@@ -6,7 +6,8 @@ alias ll='ls -lFh'
 alias psl='ps -e -o user,pid,ppid,stat,start_time,%cpu,cputime,sz,rss,%mem,nlwp,args -H'
 
 # Color support
-if [ -x /usr/bin/dircolors ]; then
+dircolors="command -v dircolors"
+if [[ ! -z "$dircolors" ]]; then
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
