@@ -39,6 +39,7 @@ set smarttab
 
 " listchars
 set listchars=eol:¶,tab:>·,trail:·
+map <F4> :set list!<CR>
 
 " Enable 256 color mode
 set t_Co=256
