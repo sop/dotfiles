@@ -17,6 +17,9 @@ call vundle#end()
 " Enable filetype specific plygins and indention
 filetype plugin indent on
 
+" Enable modeline
+set modeline
+
 " Display line numbers
 set number
 map <F3> :set number!<CR>
